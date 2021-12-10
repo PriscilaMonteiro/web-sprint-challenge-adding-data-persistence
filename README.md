@@ -10,8 +10,8 @@ You are not allowed to collaborate during the sprint challenge.
 
 ## Project Set Up
 
-- [ ] Run `npm install` to install your dependencies.
-- [ ] Run tests locally executing `npm test`.
+- [✅ ] Run `npm install` to install your dependencies.
+- [✅ ] Run tests locally executing `npm test`.
 
 ## Project Instructions
 
@@ -21,13 +21,13 @@ In this project you will be given a set of requirements and must design a databa
 
 ### Files to Complete
 
-1. `package.json`
-2. `index.js`
-3. `api/server.js`
-4. `model.js` inside `api/project`, `api/resource` and `api/task`
-5. `router.js` inside `api/project`, `api/resource` and `api/task`
-6. migration file(s)
-7. seed file(s) **optional**
+1. `package.json` ✅
+2. `index.js` ✅
+3. `api/server.js` ✅
+4. `model.js` inside `api/project`, `api/resource` and `api/task` 🚨
+5. `router.js` inside `api/project`, `api/resource` and `api/task`🚨
+6. migration file(s) 🚨
+7. seed file(s) **optional** 🚨
 
 ### Required Dependencies
 
@@ -35,7 +35,7 @@ The project needs some additional NPM dependencies in order to work.
 
 ### Required Scripts
 
-Add `"start"`. `"server"`, `"migrate"` and `"rollback"` scripts to the `package.json` file.
+Add `"start"` ✅ . `"server"` ✅ , `"migrate"`✅ and `"rollback"`✅ scripts to the `package.json` file.
 
 ### Required Tables
 
@@ -69,20 +69,25 @@ Build the migration(s) in Knex inside the `data/migrations` folder using appropr
 Build an API inside the `api` folder with endpoints for:
 
 - [ ] `[POST] /api/resources`
+
   - Example of response body: `{"resource_id":1,"resource_name":"foo","resource_description":null}`
 
 - [ ] `[GET] /api/resources`
+
   - Example of response body: `[{"resource_id":1,"resource_name":"foo","resource_description":null}]`
 
 - [ ] `[POST] /api/projects`
+
   - Even though `project_completed` is stored as an integer, the API uses booleans when interacting with the client
   - Example of response body: `{"project_id":1,"project_name":"bar","project_description":null,"project_completed":false}`
 
 - [ ] `[GET] /api/projects`
+
   - Even though `project_completed` is stored as an integer, the API uses booleans when interacting with the client
   - Example of response body: `[{"project_id":1,"project_name":"bar","project_description":null,"project_completed":false}]`
 
 - [ ] `[POST] /api/tasks`
+
   - Even though `task_completed` is stored as an integer, the API uses booleans when interacting with the client
   - Example of response body: `{"task_id":1,"task_description":"baz","task_notes":null,"task_completed":false,"project_id:1}`
 
@@ -110,6 +115,18 @@ Build an API inside the `api` folder with endpoints for:
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between Relational Databases and SQL.
+
+Relational databases are databases that store their data in tables, it fits nicely into rows and columns and SQL (Structured Query Language) is a standard language.
+SQL is used to execute queries, retrieve data, and edit data by updating, deleting, or creating new records.
+
 2. Why do tables need a Primary Key?
+
+A primary key is a way to identify each entry in the database uniquely. It is most often represented as an auto-incrementing integer.
+
 3. What is the name given to a table column that references the Primary Key on another table?
+
+It is Foreign keys. Foreign keys are used to connect a record in one table to a record in a second table.
+
 4. What do we need in order to have a _many to many_ relationship between two tables?
+
+We need to have an intermediary table that holds foreign keys that reference the primary key on the related tables to model this relationship.
