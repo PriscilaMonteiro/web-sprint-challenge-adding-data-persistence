@@ -1,4 +1,5 @@
 const db = require('../../data/dbConfig');
+const { projectSchema } = require('../schema');
 const Project = require('./model');
 
 
@@ -23,8 +24,22 @@ async function checkProjectId (req, res, next) {
   }
 }
 
+async function checkProjectPayload(req, res, next) {
+  try {
+    const validated = await projectSchema.validate(
+      req.body,
+      { strict: false, stripUnknown: true }
+    )
+    req.body = validated
+    next();
+  } catch (err) {
+    next({ message: `${err.message}`, status: 400 });
+  }
+}
+
 
 module.exports = {
   handleError,
   checkProjectId,
+  checkProjectPayload,
 }

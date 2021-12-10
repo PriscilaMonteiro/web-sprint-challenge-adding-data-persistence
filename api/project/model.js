@@ -18,16 +18,24 @@ async function  getById (project_id) {
     .where('project_id', project_id)
     .first();
 
-    return {
-      ...project,
-      project_completed:
-        project.project_completed === 0
-          ? false : true,
-    }
+  return {
+    ...project,
+    project_completed:
+      project.project_completed === 0
+        ? false : true,
+  }
 }
+
+const createProject = async (project) => {
+  const [id] = await db("projects")
+    .insert(project);
+  const newProject = await getById(id);
+  return newProject;
+};
 
 
 module.exports = {
   getAll,
   getById,
+  createProject,
 }
