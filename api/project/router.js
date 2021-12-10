@@ -22,7 +22,7 @@ router.get('/:id', checkProjectId, (req, res, next) => {
   res.status(200).json(req.project);
 })
 
-router.post('/', (req, res, next) => { // 
+router.post('/', checkProjectPayload, (req, res, next) => { 
   Projects.createProject(req.body)
     .then(project => {
       res.status(201).json(project);
