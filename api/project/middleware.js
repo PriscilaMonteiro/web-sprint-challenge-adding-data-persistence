@@ -8,7 +8,23 @@ function handleError(err, req, res, next) {
   })
 }
 
+async function checkProjectId (req, res, next) {
+  try{
+    const { id } = req.params
+    const project = await Project.getById(id)
+    if(project){
+      req.project = project
+      next()
+    } else {
+      next({ status:404, message: `project with id ${id} is not found`})
+    }
+  } catch (err) {
+    next(err);
+  }
+}
+
 
 module.exports = {
   handleError,
+  checkProjectId,
 }

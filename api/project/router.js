@@ -4,6 +4,7 @@ const router = express.Router();
 
 const {
   handleError,
+  checkProjectId,
 } = require ('./middleware');
 
 const Projects = require('./model');
@@ -14,6 +15,10 @@ router.get('/', (req, res, next) => {
       res.status(200).json(projects);
     })
     .catch(next);
+})
+
+router.get('/:id', checkProjectId, (req, res, next) => {
+  res.status(200).json(req.project);
 })
 
 
