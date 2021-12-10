@@ -23,7 +23,24 @@ const resourceSchema = yup.object().shape({
     .typeError('resource_description needs to be a string'),
 })
 
+const taskSchema = yup.object().shape({
+  project_id:yup
+    .number()
+    .typeError('must be integer')
+    .required('project_id is required'),
+  task_notes:yup
+    .string()
+    .typeError('task_notes needs to be a string'),
+  task_description:yup
+    .string()
+    .typeError('task_description needs to be a string'),
+  task_completed:yup
+    .boolean()
+    .typeError('task_completed needs to be a boolean'),
+})
+
 module.exports = {
   projectSchema,
-  resourceSchema
+  resourceSchema, 
+  taskSchema
 }

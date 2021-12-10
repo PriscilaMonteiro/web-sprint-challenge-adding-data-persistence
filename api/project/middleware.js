@@ -1,4 +1,3 @@
-const db = require('../../data/dbConfig');
 const { projectSchema } = require('../schema');
 const Project = require('./model');
 

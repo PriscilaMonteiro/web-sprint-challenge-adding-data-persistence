@@ -1,4 +1,3 @@
-const db = require('../../data/dbConfig');
 const { resourceSchema } = require('../schema');
 const Resource = require('./model');
 

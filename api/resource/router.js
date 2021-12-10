@@ -1,5 +1,4 @@
 const express = require('express');
-const db = require('../../data/dbConfig');
 const router = express.Router();
 
 const {
@@ -22,7 +21,7 @@ router.get('/:id', checkResourceId, (req, res, next) => {
   res.status(200).json(req.resource);
 })
 
-router.post('/', (req, res, next) => { // 
+router.post('/', checkResourcePayload, (req, res, next) => { 
   Resources.createResource(req.body)
     .then(resource => {
       res.status(201).json(resource);

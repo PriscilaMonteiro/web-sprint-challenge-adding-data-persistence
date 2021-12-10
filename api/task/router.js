@@ -1,10 +1,10 @@
 const express = require('express');
-const db = require('../../data/dbConfig');
 const router = express.Router();
 
 const {
   handleError,
   checkTaskId,
+  checkTaskPayload,
 } = require ('./middleware');
 
 const Tasks = require('./model');
@@ -20,6 +20,14 @@ router.get('/', (req, res, next) => {
 router.get('/:id', checkTaskId, (req, res, next) => {
   res.status(200).json(req.task);
 })
+
+router.post('/', checkTaskPayload, (req, res, next) => { 
+  Tasks.createTask(req.body)
+    .then(task => {
+      res.status(201).json(task);
+    })
+    .catch(next);
+});
 
 router.use(handleError)
 

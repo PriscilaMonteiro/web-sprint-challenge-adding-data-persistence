@@ -14,20 +14,8 @@ async function  getAll () {
       rows.task_completed = true;
     }
   })
-
   return rows
 }
-
-    // console.log (rows)
-
-      // const result = { 
-      //   project_id: result.project_id,
-      //   project_name: result.project_name,
-      //   tasks: []
-      // }
-      
-      // result.rows = rows
-      // return result
 
 async function  getById (task_id) {
   const task = await db ('tasks as t')
@@ -35,7 +23,6 @@ async function  getById (task_id) {
     .select('t.*', 'p.project_name', 'p.project_description')
     .where('task_id', task_id)
     .first();
-
 
   return {
     ...task,
@@ -45,10 +32,17 @@ async function  getById (task_id) {
   }
 }
 
+const createTask = async (task) => {
+  const [id] = await db("tasks")
+    .insert(task);
+  const newTask = await getById(id);
+  return newTask;
+};
 
 
 
 module.exports = {
   getAll,
   getById,
+  createTask,
 }
