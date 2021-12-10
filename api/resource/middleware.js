@@ -1,4 +1,5 @@
 const db = require('../../data/dbConfig');
+const { resourceSchema } = require('../schema');
 const Resource = require('./model');
 
 
@@ -23,7 +24,21 @@ async function checkResourceId (req, res, next) {
   }
 }
 
+async function checkResourcePayload(req, res, next) {
+  try {
+    const validated = await resourceSchema.validate(
+      req.body,
+      { strict: false, stripUnknown: true }
+    )
+    req.body = validated
+    next();
+  } catch (err) {
+    next({ message: `${err.message}`, status: 400 });
+  }
+}
+
 module.exports = {
   handleError,
   checkResourceId,
+  checkResourcePayload,
 }
