@@ -10,7 +10,7 @@
     "cleanup": "knex seed:run --specific=00-cleanup.js",
     "up": "knex migrate:up",
     "down": "knex migrate:down",
-    "migrate": "knex migrate:latest",
+    "latest": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "mignumber": "knex migrate:currentVersion",
     "seed": "knex seed:run"
