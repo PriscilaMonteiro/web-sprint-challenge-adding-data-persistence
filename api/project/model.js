@@ -26,18 +26,6 @@ async function  getById (project_id) {
     }
 }
 
-// const getById = async (project_id) => {
-//   const project = await db("projects")
-//     .where("project_id", project_id)
-//     .first();
-//   return {
-//     ...project,
-//     project_completed:
-//       project.project_completed === 0
-//         ? false
-//         : true,
-//   };
-// };
 
 module.exports = {
   getAll,
