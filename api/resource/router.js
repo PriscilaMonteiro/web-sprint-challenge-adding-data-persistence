@@ -4,6 +4,7 @@ const router = express.Router();
 
 const {
   handleError,
+  checkResourceId,
 } = require ('./middleware');
 
 const Resources = require('./model');
@@ -16,6 +17,9 @@ router.get('/', (req, res, next) => {
     .catch(next);
 })
 
+router.get('/:id', checkResourceId, (req, res, next) => {
+  res.status(200).json(req.resource);
+})
 
 
 
